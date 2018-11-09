@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+        .line {
+            display: block;
+            height: 1px;
+            margin: 10px 0;
+            background-color: #c5c2c2;
+        }
+        .tab-button.active {
+            background: #b38e8e;
+        }
+        .post-block {
+            display: flex;
+            margin-top: 10px;
+        }
+        .post-slideBar li.active {
+            background: #b38e8e;
+        }
+        .post-contain {
+            flex-grow: 1;
+            margin-left: 10px;
+            border: 1px solid #999;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="app">
+        <p>{{ message }}</p>
+        <span class="line"></span>
+
+        <input v-model="message">
+        <span class="line"></span>
+
+        <button v-on:click="reverseMessage">逆转消息</button>
+        <span class="line"></span>
+
+        <p v-bind:title="date">
+            鼠标悬停
+        </p>
+        <span class="line"></span>
+
+        <p v-if="seen">
+            see me
+        </p>
+        <span class="line"></span>
+
+        <ul>
+            <li v-for="todo in todos">
+                {{todo.text}}
+            </li>
+        </ul>
+        <span class="line"></span>
+
+        <ol :style="{fontSize: olFontSize + 'em' }">
+            <!-- 以下两种写法都可，ul下只有li为有效元素 -->
+            <!-- <todo-item   
+                v-for="todo in todos"
+                v-bind:todo="todo"
+                v-bind:key="todo.id">
+            </todo-item> -->
+            <li is="todo-item" 
+                v-for="todo in todos"
+                v-bind:todo="todo"
+                v-bind:key="todo.id"
+                v-on:enlarge-text="olFontSize += $event"
+                >
+            </li>
+        </ol>
+        <span class="line"></span>
+        
+        <p>Using v-html: <span v-html="rawHtml"></span></p>
+        <span class="line"></span>
+        
+        <p>计算逆转第一条消息："{{ reverseMsg }}"</p>
+        <span class="line"></span>
+
+        <p>计算属性缓存：{{now}}</p>
+        <span class="line"></span>
+
+        <button v-on:click="counter += 1">add 1</button>
+        <p>The button above has been click {{counter}} times.</p>
+        <span class="line"></span>
+
+        <button v-on:click.once="warn('hello wml', $event)">测试click.once</button>
+        <span class="line"></span>
+
+        <div style="margin-top:10px">
+            <input type="text" v-on:input="changeInput" v-model.lazy="lazyInputTxt" placeholder="请输入">
+            <p>v-on监听input: {{changeTxt}}</p>
+            <p>v-model.lazy: {{lazyInputTxt}}</p>
+        </div>
+        <span class="line"></span>
+
+        <alert-box>SOmething bad happend.</alert-box>
+        <span class="line"></span>
+
+        <p>tab切换</p>
+        <div class="component-demo">
+            <button
+                v-for="tab in tabs"
+                v-bind:key="tab"
+                v-bind:class="['tab-button', {active: currentTab === tab}]"
+                v-on:click="currentTab=tab"
+                >
+            {{tab}}
+            </button>
+            <keep-alive>
+                <component :is="currentTab"></component>
+            </keep-alive>
+            
+        </div>
+        <span class="line"></span>
+    </div>
+    
+    <script src="index.js"></script>
+</body>
+</html>
