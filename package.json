@@ -1,19 +1,33 @@
 {
-  "name": "vuedemo",
+  "name": "vuedevframe",
   "version": "1.0.0",
-  "description": "vuedemp",
+  "description": "A framework for vue rapid development",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "webpack --mode production src/main.js --output-filename bundle.js --output-path dist"
+    "serve": "webpack ./src/main.js --config ./build/webpack.config.js"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wumeilian/vueDevFrame.git"
+  },
+  "keywords": [
+    "vue"
+  ],
   "author": "wml",
   "license": "ISC",
-  "devDependencies": {
-    "webpack": "^4.25.0",
-    "webpack-cli": "^3.1.2"
+  "bugs": {
+    "url": "https://github.com/wumeilian/vueDevFrame/issues"
   },
+  "homepage": "https://github.com/wumeilian/vueDevFrame#readme",
   "dependencies": {
-    "vue": "^2.5.17"
+    "@babel/core": "^7.4.4",
+    "@babel/preset-env": "^7.4.4",
+    "babel-loader": "^8.0.5",
+    "lodash": "^4.17.11"
+  },
+  "devDependencies": {
+    "webpack": "^4.30.0",
+    "webpack-cli": "^3.3.1"
   }
 }
