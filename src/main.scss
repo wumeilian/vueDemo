@@ -1,0 +1,8 @@
+@import './test.scss';
+
+$color: #ff74b9;
+
+div {
+    display: flex;
+    border: 1px dotted $color;
+}

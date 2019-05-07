@@ -4,7 +4,7 @@ module.exports = {
     mode: 'development',
     entry: {
         //配置入口文件
-        main: path.resolve(__dirname, '../src/main.js') 
+        main: ["@babel/polyfill", path.resolve(__dirname, '../src/main.js')]
     },
     output: {
         // 配置打包文件输出目录
@@ -20,7 +20,29 @@ module.exports = {
         rules: [
             {
                 test: /\.jsx?$/,
+                exclude: /node_modules/,
                 loader: 'babel-loader'
+            }, {
+                test: /\.(scss|sass)$/,
+                use: [
+                    {
+                        loader: 'style-loader'
+                    },
+                    {
+                        loader: 'css-loader',
+                        options: {
+                            importLoaders: 2
+                        }
+                    },
+                    {
+                        loader: 'sass-loader',
+                        options: {
+                            implementation: require('dart-sass')
+                        }
+                    }, {
+                        loader: 'postcss-loader'
+                    }
+                ]
             }
         ]
     }
