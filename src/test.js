@@ -1,1 +1,4 @@
-export var test = 'bbb';
+export var test = function() {
+    console.log('test');
+    return 'aacc';
+};

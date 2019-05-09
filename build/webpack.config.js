@@ -3,13 +3,16 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebapckPlugin = require('clean-webpack-plugin');
 const devMode = process.env.NODE_ENV !== 'production';
-console.log(process.NODE_ENV, 7777888)
 
 module.exports = {
     mode: 'development',
     entry: {
         //配置入口文件
         main: ["@babel/polyfill", path.resolve(__dirname, '../src/main.js')]
+    },
+    devtool: 'inline-source-map',
+    devServer: {
+        contentBase: './dist'
     },
     output: {
         // 配置打包文件输出目录
@@ -19,7 +22,7 @@ module.exports = {
         // 生成的chunk名称
         chunkFilename: 'js/[name].js',
         // 资源引用路径
-        publicPath: './'
+        publicPath: '/'
     },
     module: {
         rules: [
@@ -67,11 +70,13 @@ module.exports = {
     },
     plugins: [
         new MiniCssExtractPlugin({
-            filename: devMode ? 'css/[name].css' : 'css/[name].[hash].css',
+            filename: devMode  ? 'css/[name].css' : 'css/[name].[hash].css',
             chunkFilename: devMode ? 'css/[id].css' : 'css/[id].[hash].css'
         }),
         new HtmlWebpackPlugin({
-            title: 'html test'
+            // title: 'html test',
+            // filename: '',
+            template: 'public/index.html'
         }),
         new CleanWebapckPlugin()
     ]
