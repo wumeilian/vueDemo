@@ -1,4 +1,5 @@
 export var test = function() {
     console.log('test');
-    return 'aacc';
+    console.log('Updating print.js...')
+    return 'hello world !';
 };

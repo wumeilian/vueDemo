@@ -2,6 +2,7 @@ const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebapckPlugin = require('clean-webpack-plugin');
+const webpack = require('webpack');
 const devMode = process.env.NODE_ENV !== 'production';
 
 module.exports = {
@@ -12,7 +13,8 @@ module.exports = {
     },
     devtool: 'inline-source-map',
     devServer: {
-        contentBase: './dist'
+        contentBase: './dist',
+        hot: true
     },
     output: {
         // 配置打包文件输出目录
@@ -78,6 +80,8 @@ module.exports = {
             // filename: '',
             template: 'public/index.html'
         }),
-        new CleanWebapckPlugin()
+        new CleanWebapckPlugin(),
+        new webpack.NamedModulesPlugin(),
+        new webpack.HotModuleReplacementPlugin()
     ]
 }

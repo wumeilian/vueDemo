@@ -1,9 +1,13 @@
 @import './test.scss';
 
-$color: #ff74b9;
+$color: #2ddb36;
 
 div {
     display: flex;
+    width: 200px;
+    height: 200px;
+    margin: 10px 0;
     border: 1px dotted $color;
     background: url(./avatar_default.png);
+    background-size: cover; 
 }
