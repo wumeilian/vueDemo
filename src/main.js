@@ -1,3 +1,5 @@
+import Vue from 'vue';
+import App from './App.vue';
 import {test} from './test.js';
 import './main.scss';
 
@@ -8,6 +10,10 @@ function component() {
 } 
 
 document.body.appendChild(component());
+
+new Vue({
+    render: h => h(App)
+}).$mount('#app')
 
 // if (module.hot) {
 //    module.hot.accept('./test.js', function() {

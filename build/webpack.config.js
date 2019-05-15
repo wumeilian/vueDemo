@@ -3,6 +3,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebapckPlugin = require('clean-webpack-plugin');
 const webpack = require('webpack');
+const VueLoaderPlugin = require('vue-loader/lib/plugin');
 const devMode = process.env.NODE_ENV !== 'production';
 
 module.exports = {
@@ -67,6 +68,24 @@ module.exports = {
                         name: 'imgs/[name].[ext]'
                     }
                 }]
+            }, {
+                test: /\.vue$/,
+                use: [
+                    {
+                        loader: 'cache-loader',
+                    }, 
+                    {
+                        loader: 'thread-loader',
+                    },
+                    {
+                        loader: 'vue-loader',
+                        options: {
+                            compilerOptions: {
+                                preserveWhitespace: false
+                            }
+                        }
+                    }
+                ]
             }
         ]
     },
@@ -82,6 +101,7 @@ module.exports = {
         }),
         new CleanWebapckPlugin(),
         new webpack.NamedModulesPlugin(),
-        new webpack.HotModuleReplacementPlugin()
+        new webpack.HotModuleReplacementPlugin(),
+        new VueLoaderPlugin()
     ]
 }
