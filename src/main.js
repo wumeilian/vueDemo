@@ -11,9 +11,31 @@ function component() {
 
 document.body.appendChild(component());
 
-new Vue({
-    render: h => h(App)
-}).$mount('#app')
+
+
+asyncFn().then(e => {
+    console.log(e, 'ans')
+})
+
+async function asyncFn() {
+    console.log(11);
+    let test = await asyncFn2(1, 2);
+    console.log(333);
+    return test * test;
+
+}
+
+
+function asyncFn2(x, y) {
+    console.log(22);
+    setTimeout(function() {
+        console.log(44);
+    }, 0)
+    return x+y
+}
+// new Vue({
+//     render: h => h(App)
+// }).$mount('#app')
 
 // if (module.hot) {
 //    module.hot.accept('./test.js', function() {
