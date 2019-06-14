@@ -15,7 +15,7 @@ module.exports = {
     devtool: 'inline-source-map',
     devServer: {
         contentBase: './dist',
-        hot: true
+        // hot: true
     },
     output: {
         // 配置打包文件输出目录
@@ -101,7 +101,7 @@ module.exports = {
         }),
         new CleanWebapckPlugin(),
         new webpack.NamedModulesPlugin(),
-        new webpack.HotModuleReplacementPlugin(),
+        // new webpack.HotModuleReplacementPlugin(),
         new VueLoaderPlugin()
     ]
 }
